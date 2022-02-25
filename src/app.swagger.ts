@@ -7,7 +7,8 @@ export const initSwagger = (app: INestApplication) => {
     .setDescription(
       'API Creada con framework NestJS, con un CRUD básico para un Blog.',
     )
+    .setVersion('0.0.1')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('/docs', app, document);
+  SwaggerModule.setup('/', app, document);
 };

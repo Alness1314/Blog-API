@@ -8,7 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePostDTO, EditPostDTO } from './dtos';
 import { PostService } from './post.service';
 
@@ -36,11 +36,13 @@ export class PostController {
   }
 
   @Post()
+  @ApiBody({ type: CreatePostDTO })
   createOne(@Body() dto: CreatePostDTO) {
     return this.postService.createOne(dto);
   }
 
   @Put(':id')
+  @ApiBody({ type: EditPostDTO })
   updateOne(@Param('id', ParseIntPipe) id: number, @Body() dto: EditPostDTO) {
     return this.postService.editOne(id, dto);
   }
